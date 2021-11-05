@@ -1,0 +1,10 @@
+.navbar {
+  font-weight: 600;
+  display: flex;
+  justify-content: space-around;
+
+  &__item {
+    color: black;
+    text-decoration: none;
+  }
+}
