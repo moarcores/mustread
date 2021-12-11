@@ -57,7 +57,7 @@ class UserService(
         return AuthenticationResult(accessToken, refreshToken)
     }
 
-    private fun UserModel.toEntity() = User(this.name, this.password, this.status)
+    private fun UserModel.toEntity() = User(this.username, this.password, this.status)
 
     private fun User.toModel() =
         UserModel(

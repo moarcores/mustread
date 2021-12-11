@@ -42,5 +42,5 @@ class UserController(private val userService: UserService) {
     )
     fun refreshToken(authentication: Authentication) = userService.refreshToken(authentication)
 
-    private fun UserRequestDto.toModel() = UserModel(this.name, this.password, Status.OFFLINE)
+    private fun UserRequestDto.toModel() = UserModel(this.username, this.password, Status.OFFLINE)
 }
