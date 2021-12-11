@@ -17,19 +17,19 @@ class UserService(
         private val passwordEncoder: PasswordEncoder
 ) {
 
-    private fun findUser(name: String) = userRepository.findUserByName(name).toModel()
+    private fun findUser(name: String) = userRepository.findUserByUsername(name).toModel()
 
     fun addUser(userModel: UserModel): UserResponseDto {
         val user = userRepository.save(userModel.toEntity())
 
-        return UserResponseDto(user.id ?: 0, user.name ?: "")
+        return UserResponseDto(user.id ?: 0, user.username ?: "")
     }
 
     fun getUserById(id: Int): UserResponseDto? {
         val user = userRepository.findById(id)
 
         return if (!user.isEmpty) {
-            UserResponseDto(user.get().id ?: 0, user.get().name ?: "")
+            UserResponseDto(user.get().id ?: 0, user.get().username ?: "")
         } else {
             null
         }
@@ -59,7 +59,7 @@ class UserService(
 
     private fun User.toModel() =
         UserModel(
-            this.name ?: "",
+            this.username ?: "",
             this.password ?: "",
             this.status ?: Status.OFFLINE
         )
