@@ -1,14 +1,13 @@
 package com.itmo.mustread.users.entity
 
 import com.itmo.mustread.users.model.Status
-import java.util.*
 import javax.persistence.*
 
 @Entity
 class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    var id: UUID? = null
+    var id: Int? = null
     var name: String? = null
     var password: String? = null
     var status: Status? = null
