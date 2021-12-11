@@ -1,24 +1,18 @@
 package com.itmo.mustread.users.entity
 
-import com.itmo.mustread.users.model.Status
-import javax.persistence.*
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 
-@Entity
-class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    var id: Int? = null
-    var name: String? = null
-    var password: String? = null
-    var status: Status? = null
-    @ManyToMany
-    var subscriptions: List<User>? = null;
+class User : UserDetails {
+    private val username: String? = null
+    private val password: String? = null
+    private val authority: List<GrantedAuthority>? = null
 
-    constructor()
-
-    constructor(name: String?, password: String?, status: Status?) {
-        this.name = name
-        this.password = password
-        this.status = status
-    }
+    override fun getAuthorities(): MutableCollection<out GrantedAuthority> = authorities
+    override fun getPassword() =password.toString()
+    override fun getUsername() = username.toString()
+    override fun isAccountNonExpired() = true
+    override fun isAccountNonLocked() = true
+    override fun isCredentialsNonExpired() = true
+    override fun isEnabled() = true
 }
