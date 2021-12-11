@@ -6,7 +6,7 @@ import com.itmo.mustread.users.entity.User
 
 fun User.toModel() = kotlin.runCatching {
     UserModel(
-        name = this.name ?: "",
+        username = this.username ?: "",
         password = this.password ?: "",
         status = this.status ?: Status.OFFLINE
     )

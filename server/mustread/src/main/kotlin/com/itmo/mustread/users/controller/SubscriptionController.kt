@@ -1,6 +1,6 @@
 package com.itmo.mustread.users.controller
 
-import com.itmo.mustread.users.entity.User
+import org.springframework.security.core.userdetails.User
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import org.springframework.security.core.annotation.AuthenticationPrincipal
@@ -15,6 +15,6 @@ class SubscriptionController() {
         security = [SecurityRequirement(name = "bearerAuth")]
     )
     fun subscribeTo(@PathVariable id: Int, @AuthenticationPrincipal user: User) {
-        println(user)
+        println(user.username)
     }
 }
