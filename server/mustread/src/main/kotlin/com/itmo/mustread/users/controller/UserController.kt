@@ -1,8 +1,8 @@
 package com.itmo.mustread.users.controller
 
 import com.itmo.mustread.users.model.*
-import com.itmo.mustread.users.api.service.IUserService
 import com.itmo.mustread.users.model.AuthenticationRequest
+import com.itmo.mustread.users.service.UserService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import org.springframework.http.HttpStatus
@@ -13,7 +13,7 @@ import org.springframework.web.server.ResponseStatusException
 
 @RestController
 @RequestMapping("/users")
-class UserController(private val userService: IUserService) {
+class UserController(private val userService: UserService) {
 
     @PostMapping
     @Operation(summary = "Register new user")

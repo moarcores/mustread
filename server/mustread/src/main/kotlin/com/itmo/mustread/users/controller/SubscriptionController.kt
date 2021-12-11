@@ -16,5 +16,6 @@ class SubscriptionController() {
         security = [SecurityRequirement(name = "bearerAuth")]
     )
     fun subscribeTo(@PathVariable id: UUID, @AuthenticationPrincipal user: User) {
+        println(user)
     }
 }
