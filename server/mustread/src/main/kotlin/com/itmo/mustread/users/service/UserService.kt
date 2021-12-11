@@ -5,6 +5,7 @@ import com.itmo.mustread.users.model.*
 import com.itmo.mustread.users.model.AuthenticationRequest
 import com.itmo.mustread.users.entity.User
 import com.itmo.mustread.users.repository.UserRepository
+import com.itmo.mustread.users.util.toModel
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -17,7 +18,7 @@ class UserService(
         private val passwordEncoder: PasswordEncoder
 ) {
 
-    private fun findUser(name: String) = userRepository.findUserByUsername(name).toModel()
+    private fun findUser(name: String) = getUserByUsername(name).toModel()
 
     fun addUser(userModel: UserModel): UserResponseDto {
         val user = userRepository.save(userModel.toEntity())
@@ -25,14 +26,10 @@ class UserService(
         return UserResponseDto(user.id ?: 0, user.username ?: "")
     }
 
-    fun getUserById(id: Int): UserResponseDto? {
+    fun getUserById(id: Int): UserModel? {
         val user = userRepository.findById(id)
-
-        return if (!user.isEmpty) {
-            UserResponseDto(user.get().id ?: 0, user.get().username ?: "")
-        } else {
-            null
-        }
+        if (user.isEmpty) return null
+        return user.get().toModel()
     }
 
     fun getUserByUsername(username: String) = userRepository.findUserByUsername(username)
@@ -58,11 +55,4 @@ class UserService(
     }
 
     private fun UserModel.toEntity() = User(this.username, this.password, this.status)
-
-    private fun User.toModel() =
-        UserModel(
-            this.username ?: "",
-            this.password ?: "",
-            this.status ?: Status.OFFLINE
-        )
 }

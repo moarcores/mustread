@@ -6,7 +6,8 @@ import org.springframework.security.core.userdetails.UserDetails
 data class UserModel(
     val username: String,
     val password: String,
-    val status: Status
+    val status: Status,
+    val subscriptions: List<Int> = listOf()
 ) {
     fun userDetails(): UserDetails = User(username, password, emptyList())
 }

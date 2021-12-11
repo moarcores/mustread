@@ -1,6 +1,7 @@
 package com.itmo.mustread.users.entity
 
 import com.itmo.mustread.users.model.Status
+import com.itmo.mustread.users.model.UserModel
 import javax.persistence.*
 
 @Entity
@@ -13,7 +14,7 @@ class User {
     var password: String? = null
     var status: Status? = null
     @ManyToMany
-    var subscriptions: List<User>? = null;
+    var subscriptions: MutableList<User> = mutableListOf()
 
     constructor()
 
