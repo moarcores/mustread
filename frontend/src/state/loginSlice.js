@@ -1,9 +1,9 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const loginSlice = createSlice({
     name: 'login',
     initialState: {
-        token: '',
+        token: null,
     },
     reducers: {
         setToken(state, action) {
