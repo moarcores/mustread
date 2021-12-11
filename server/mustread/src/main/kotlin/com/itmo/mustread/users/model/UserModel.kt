@@ -1,4 +1,4 @@
-package com.itmo.mustread.users.api.model
+package com.itmo.mustread.users.model
 
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails

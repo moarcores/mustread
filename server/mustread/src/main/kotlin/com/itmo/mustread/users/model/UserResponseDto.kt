@@ -1,4 +1,4 @@
-package com.itmo.mustread.users.api.model
+package com.itmo.mustread.users.model
 
 data class UserResponseDto(
     val id: Int,

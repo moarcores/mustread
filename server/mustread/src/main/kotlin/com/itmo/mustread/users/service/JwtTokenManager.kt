@@ -1,6 +1,6 @@
-package com.itmo.mustread.users.impl.service
+package com.itmo.mustread.users.service
 
-import com.itmo.mustread.users.impl.config.SecurityProperties
+import com.itmo.mustread.users.config.SecurityProperties
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm

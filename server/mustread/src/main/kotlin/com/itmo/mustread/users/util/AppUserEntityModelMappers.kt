@@ -1,8 +1,8 @@
-package com.itmo.mustread.users.impl.util
+package com.itmo.mustread.users.util
 
-import com.itmo.mustread.users.api.model.Status
-import com.itmo.mustread.users.api.model.UserModel
-import com.itmo.mustread.users.impl.entity.User
+import com.itmo.mustread.users.model.Status
+import com.itmo.mustread.users.model.UserModel
+import com.itmo.mustread.users.entity.User
 
 fun User.toModel() = kotlin.runCatching {
     UserModel(

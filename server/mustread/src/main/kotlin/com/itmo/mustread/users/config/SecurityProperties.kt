@@ -1,4 +1,4 @@
-package com.itmo.mustread.users.impl.config
+package com.itmo.mustread.users.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.stereotype.Component

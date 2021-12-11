@@ -1,19 +1,19 @@
-package com.itmo.mustread.users.impl.entity
+package com.itmo.mustread.users.entity
 
-import com.itmo.mustread.users.api.model.Status
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import com.itmo.mustread.users.model.Status
+import java.util.*
+import javax.persistence.*
 
 @Entity
 class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    var id: Int? = null
+    var id: UUID? = null
     var name: String? = null
     var password: String? = null
     var status: Status? = null
+    @ManyToMany
+    var subscriptions: List<User>? = null;
 
     constructor()
 

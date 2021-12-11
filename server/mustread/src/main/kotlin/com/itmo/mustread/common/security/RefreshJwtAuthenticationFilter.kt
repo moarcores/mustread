@@ -1,6 +1,6 @@
 package com.itmo.mustread.common.security
 
-import com.itmo.mustread.users.impl.service.JwtTokenManager
+import com.itmo.mustread.users.service.JwtTokenManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component

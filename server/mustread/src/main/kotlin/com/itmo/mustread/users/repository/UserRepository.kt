@@ -1,6 +1,6 @@
-package com.itmo.mustread.users.impl.repository
+package com.itmo.mustread.users.repository
 
-import com.itmo.mustread.users.impl.entity.User
+import com.itmo.mustread.users.entity.User
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
