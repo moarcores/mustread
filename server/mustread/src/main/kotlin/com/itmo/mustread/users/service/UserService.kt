@@ -35,6 +35,8 @@ class UserService(
         }
     }
 
+    fun getUserByUsername(username: String) = userRepository.findUserByUsername(username)
+
     fun authUser(request: AuthenticationRequest): AuthenticationResult {
         val user = findUser(request.username)
 
