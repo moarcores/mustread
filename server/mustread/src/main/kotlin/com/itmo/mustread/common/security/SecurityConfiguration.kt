@@ -12,8 +12,8 @@ import org.springframework.web.cors.CorsConfiguration
 
 @Configuration
 class SecurityConfiguration(
-        private val authenticationFilter: JwtAuthenticationFilter,
-        private val refreshAuthenticationFilter: RefreshJwtAuthenticationFilter
+    private val authenticationFilter: JwtAuthenticationFilter,
+    private val refreshAuthenticationFilter: RefreshJwtAuthenticationFilter
 ) : WebSecurityConfigurerAdapter() {
 
     @Bean
@@ -21,26 +21,27 @@ class SecurityConfiguration(
 
     override fun configure(http: HttpSecurity) {
         http
-                .cors().configurationSource {
-                    CorsConfiguration()
-                            .also { it.allowedOrigins = listOf("*") }
-                            .also { it.allowedHeaders = listOf("*") }
-                            .also { it.allowedMethods = listOf("*") }
-                }.and()
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/users").permitAll()
-                .antMatchers(HttpMethod.POST, "/users/auth").permitAll()
-                .antMatchers(HttpMethod.POST, "/authentication").permitAll()
-                .antMatchers(HttpMethod.POST, "/auth/refresh").hasAuthority("REFRESH")
-                .antMatchers("/actuator/**").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
-                .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .anyRequest().hasAuthority("ACCESS")
-                .and()
-                .addFilterAt(authenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
-                .addFilterAfter(refreshAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
-                .headers().frameOptions().sameOrigin()
+            .cors().configurationSource {
+                CorsConfiguration()
+                    .also { it.allowedOrigins = listOf("*") }
+                    .also { it.allowedHeaders = listOf("*") }
+                    .also { it.allowedMethods = listOf("*") }
+            }.and()
+            .csrf().disable()
+            .authorizeRequests()
+            .antMatchers(HttpMethod.POST, "/users").permitAll()
+            .antMatchers(HttpMethod.POST, "/users/auth").permitAll()
+            .antMatchers(HttpMethod.POST, "/authentication").permitAll()
+            .antMatchers(HttpMethod.POST, "/auth/refresh").hasAuthority("REFRESH")
+            .antMatchers("/actuator/**").permitAll()
+            .antMatchers("/h2-console/**").permitAll()
+            .antMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
+            .antMatchers("/books/**").permitAll()
+            .antMatchers(HttpMethod.OPTIONS).permitAll()
+            .anyRequest().hasAuthority("ACCESS")
+            .and()
+            .addFilterAt(authenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
+            .addFilterAfter(refreshAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
+            .headers().frameOptions().sameOrigin()
     }
 }
