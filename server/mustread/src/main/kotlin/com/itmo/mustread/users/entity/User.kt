@@ -1,10 +1,6 @@
 package com.itmo.mustread.users.entity
 
-import com.itmo.mustread.books.entity.Book
-import com.itmo.mustread.books.entity.BookRating
-import com.itmo.mustread.common.interfaces.TimeComparator
 import com.itmo.mustread.users.model.Status
-import com.itmo.mustread.users.model.UserModel
 import org.hibernate.annotations.Cascade
 import org.hibernate.annotations.CascadeType
 import java.util.*
@@ -22,7 +18,8 @@ class User {
     @ManyToMany
     var subscriptions: MutableList<User> = mutableListOf()
     @OneToMany
-    var ratedBooks: MutableList<BookRating> = mutableListOf()
+    @OrderBy("modify_date DESC")
+    var ratedBooks: SortedSet<BookRating> = sortedSetOf()
     @ManyToMany
     @Cascade(CascadeType.ALL)
     @OrderBy("modify_date DESC")

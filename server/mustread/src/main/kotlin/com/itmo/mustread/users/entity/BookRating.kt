@@ -1,5 +1,6 @@
-package com.itmo.mustread.books.entity
+package com.itmo.mustread.users.entity
 
+import com.itmo.mustread.books.entity.Book
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.util.*
@@ -24,5 +25,12 @@ class BookRating {
     @ManyToOne
     var book: Book? = null
     @Column(columnDefinition = "int4 CHECK (rate >= 1 and rate <= 10)")
-    var rate: Int? = null
+    var rating: Int? = null
+
+    constructor()
+
+    constructor(bookId: Int, rating:Int) {
+        this.book = Book(bookId)
+        this.rating = rating
+    }
 }

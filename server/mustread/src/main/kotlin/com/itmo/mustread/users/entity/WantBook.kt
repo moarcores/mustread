@@ -27,8 +27,8 @@ class WantBook: Comparable<WantBook> {
 
     constructor()
 
-    constructor(boodId: Int) {
-        this.book = Book(boodId)
+    constructor(bookId: Int) {
+        this.book = Book(bookId)
     }
 
     override fun compareTo(other: WantBook): Int {

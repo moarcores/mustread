@@ -43,4 +43,8 @@ class UserBookService(
         user.wantBook.remove(wantBook)
         userRepository.save(user)
     }
+
+    fun rateBook(userName:String, bookId: Int, rating: Int) {
+
+    }
 }
