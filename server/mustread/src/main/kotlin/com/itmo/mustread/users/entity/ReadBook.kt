@@ -7,7 +7,7 @@ import java.util.*
 import javax.persistence.*
 
 @Entity
-class BookRating {
+class ReadBook {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     var id: Int? = null
@@ -24,12 +24,12 @@ class BookRating {
 
     @ManyToOne
     var book: Book? = null
-    @Column(columnDefinition = "int4 CHECK (rate >= 1 and rate <= 10)")
+    @Column(columnDefinition = "int4 CHECK (rating >= 1 and rating <= 10)")
     var rating: Int? = null
 
     constructor()
 
-    constructor(bookId: Int, rating:Int) {
+    constructor(bookId: Int, rating:Int?) {
         this.book = Book(bookId)
         this.rating = rating
     }

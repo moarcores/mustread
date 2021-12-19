@@ -18,12 +18,13 @@ class User {
     @ManyToMany
     var subscriptions: MutableList<User> = mutableListOf()
     @OneToMany
+    @Cascade(CascadeType.ALL)
     @OrderBy("modify_date DESC")
-    var ratedBooks: SortedSet<BookRating> = sortedSetOf()
+    var readBooks: MutableList<ReadBook> = mutableListOf()
     @ManyToMany
     @Cascade(CascadeType.ALL)
     @OrderBy("modify_date DESC")
-    var wantBook: SortedSet<WantBook> = sortedSetOf()
+    var wantBook: MutableList<WantBook> = mutableListOf()
 
     constructor()
 

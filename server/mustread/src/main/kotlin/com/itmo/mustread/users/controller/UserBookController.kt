@@ -4,6 +4,8 @@ import com.itmo.mustread.books.model.BookModel
 import com.itmo.mustread.books.model.BookRequestDto
 import com.itmo.mustread.books.model.BookResponseDto
 import com.itmo.mustread.users.model.BookWantListDto
+import com.itmo.mustread.users.model.RateBookRequest
+import com.itmo.mustread.users.model.ReadBooksDto
 import com.itmo.mustread.users.service.UserBookService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
@@ -43,13 +45,31 @@ class UserBookController(val userBookService: UserBookService) {
         return userBookService.removeFromWantList(user.username, id)
     }
 
-    @PostMapping("/wantlist")
+    @GetMapping("/wantlist")
     @Operation(
         summary = "Get want list",
         security = [SecurityRequirement(name = "bearerAuth")]
     )
     fun getWantList(@AuthenticationPrincipal user: User): BookWantListDto {
         return userBookService.getWantList(user.username)
+    }
+
+    @PostMapping("/readBook")
+    @Operation(
+        summary = "Rate book or add to read list",
+        security = [SecurityRequirement(name = "bearerAuth")]
+    )
+    fun rateBook(@RequestBody request: RateBookRequest, @AuthenticationPrincipal user: User) {
+        return userBookService.rateBook(user.username, request.id, request.rating)
+    }
+
+    @GetMapping("/getReadBooks")
+    @Operation(
+        summary = "Get read books",
+        security = [SecurityRequirement(name = "bearerAuth")]
+    )
+    fun getReadBooks( @AuthenticationPrincipal user: User): List<ReadBooksDto> {
+        return userBookService.getReadBooks(user.username)
     }
 
 }

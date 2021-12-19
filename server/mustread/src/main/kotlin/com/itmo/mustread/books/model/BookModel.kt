@@ -7,4 +7,5 @@ data class BookModel(
     val title: String,
     val author: String,
     val year: Int,
+    val pictureLink: String
 )

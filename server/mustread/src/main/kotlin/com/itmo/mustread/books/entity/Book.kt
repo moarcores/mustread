@@ -35,14 +35,18 @@ class Book {
     var author: Author? = null
     var year: Int? = null
 
+    var pictureLink: String? = null
+
     constructor()
 
     constructor(id: Int) {
         this.id = id
     }
 
-    constructor(title: String, author: Author) {
+    constructor(title: String, author: Author, year: Int?, pictureLink: String?) {
         this.title = title
         this.author = author
+        this.year = year
+        this.pictureLink = pictureLink
     }
 }

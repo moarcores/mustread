@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface AuthorRepository : JpaRepository<Author, Int> {
     fun findAuthorByName(name: String): Author?
+    fun findTop10AuthorsByNameContainsIgnoreCase(s: String): List<Author>
 }
