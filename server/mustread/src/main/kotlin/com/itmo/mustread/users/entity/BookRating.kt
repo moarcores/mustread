@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.util.*
 import javax.persistence.*
+import javax.validation.Constraint
 
 @Entity
 class BookRating {
@@ -24,7 +25,7 @@ class BookRating {
 
     @ManyToOne
     var book: Book? = null
-    @Column(columnDefinition = "int4 CHECK (rate >= 1 and rate <= 10)")
+    @Column(columnDefinition = "int4 CHECK (rating >= 1 and rating <= 10)")
     var rating: Int? = null
 
     constructor()
