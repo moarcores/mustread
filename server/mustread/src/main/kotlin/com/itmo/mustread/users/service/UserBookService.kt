@@ -1,10 +1,12 @@
 package com.itmo.mustread.users.service
 
+import com.itmo.mustread.books.entity.Book
 import com.itmo.mustread.books.repository.BookRepository
 import com.itmo.mustread.users.entity.ReadBook
 import com.itmo.mustread.users.entity.WantBook
 import com.itmo.mustread.users.model.BookWantListDto
-import com.itmo.mustread.users.model.ReadBooksDto
+import com.itmo.mustread.users.model.FeedDto
+import com.itmo.mustread.users.model.ReadBookDto
 import com.itmo.mustread.users.repository.UserRepository
 import com.itmo.mustread.users.repository.WantBookRepository
 import com.itmo.mustread.users.util.toModel
@@ -81,10 +83,26 @@ class UserBookService(
         userRepository.save(user)
     }
 
-    fun getReadBooks(userName: String): List<ReadBooksDto> {
+    fun getReadBooks(userName: String): List<ReadBookDto> {
         val user = userRepository.findUserByUsername(userName)
 
-        return user.readBooks.map { b -> ReadBooksDto(b.book!!.toModel(), b.rating) }
+        return user.readBooks.map { b -> ReadBookDto(b.book!!.toModel(), b.rating) }
 
+    }
+
+    fun makeFeed(userName: String): List<FeedDto> {
+        val res: MutableList<Pair<ReadBook, String>> = mutableListOf()
+
+        val user = userRepository.findUserByUsername(userName)
+        for (friend in user.subscriptions) {
+            res.addAll( friend.readBooks.map{ b -> Pair(b, friend.username!!)})
+        }
+
+        res.sortByDescending { it.first.modifyDate }
+
+        return res.map{e -> FeedDto(
+            ReadBookDto(e.first.book!!.toModel(), e.first.rating),
+            e.second
+        ) }
     }
 }

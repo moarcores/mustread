@@ -1,17 +1,14 @@
 package com.itmo.mustread.users.controller
 
-import com.itmo.mustread.books.model.BookModel
-import com.itmo.mustread.books.model.BookRequestDto
-import com.itmo.mustread.books.model.BookResponseDto
 import com.itmo.mustread.users.model.BookWantListDto
+import com.itmo.mustread.users.model.FeedDto
 import com.itmo.mustread.users.model.RateBookRequest
-import com.itmo.mustread.users.model.ReadBooksDto
+import com.itmo.mustread.users.model.ReadBookDto
 import com.itmo.mustread.users.service.UserBookService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.core.userdetails.User
-import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -68,8 +65,17 @@ class UserBookController(val userBookService: UserBookService) {
         summary = "Get read books",
         security = [SecurityRequirement(name = "bearerAuth")]
     )
-    fun getReadBooks( @AuthenticationPrincipal user: User): List<ReadBooksDto> {
+    fun getReadBooks( @AuthenticationPrincipal user: User): List<ReadBookDto> {
         return userBookService.getReadBooks(user.username)
+    }
+
+    @GetMapping("/feed")
+    @Operation(
+        summary = "Make feed for user",
+        security = [SecurityRequirement(name = "bearerAuth")]
+    )
+    fun makeFeed(@AuthenticationPrincipal user: User): List<FeedDto> {
+        return userBookService.makeFeed(user.username)
     }
 
 }

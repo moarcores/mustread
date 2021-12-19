@@ -21,7 +21,7 @@ class ReadBook {
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "modify_date")
-    private val modifyDate: Date? = null
+    val modifyDate: Date? = null
 
     @ManyToOne
     var book: Book? = null
