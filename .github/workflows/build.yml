@@ -20,4 +20,4 @@ jobs:
       - name: Build
         run: mvn -B clean package -DskipTests -f ./server/mustread/pom.xml
       - name: Test
-        run: mvn -B clean verify -f ./server/mustread/pom.xml
+        run: mvn -B clean verify -f ./server/mustread/pom.xml -Dspring.profiles.active=dev
