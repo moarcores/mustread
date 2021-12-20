@@ -40,3 +40,18 @@ jobs:
         env:
           IMAGE_NAME: $GITHUB_REPOSITORY
         run: docker push "ghcr.io/$GITHUB_REPOSITORY/${{ steps.global_env.outputs.IMAGE_NAME }}"
+
+#     Deploy postgres + spring app to remote
+      - name: Docker-Compose Remote Deployment
+        uses: TapTap21/docker-remote-deployment-action@v1.1
+        with:
+          remote_docker_host: elnikovss@178.154.251.113
+          ssh_private_key: ${{ secrets.YANDEX_CLOUD_SSH }}
+          ssh_public_key: ${{ secrets.YANDEX_CLOUD_SSH_PUB }}
+          stack_file_name: docker-compose.yml
+          docker_login_password: ${{ secrets.DOCKER_REPO_PASSWORD }}
+          docker_login_user: ${{ secrets.DOCKER_REPO_USERNAME }}
+          docker_login_registry : http://ghcr.io
+          args: -p myapp up -d
+            
+
