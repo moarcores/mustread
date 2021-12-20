@@ -4,7 +4,6 @@ import org.hibernate.annotations.Cascade
 import org.hibernate.annotations.CascadeType
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField
 import org.springframework.stereotype.Indexed
 import java.util.Date
 import javax.persistence.*
@@ -27,7 +26,6 @@ class Book {
     @Column(name = "modify_date")
     private val modifyDate: Date? = null
 
-    @FullTextField
     var title: String? = null
 
     @Cascade(CascadeType.ALL)
