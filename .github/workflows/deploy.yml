@@ -18,7 +18,7 @@ jobs:
         with:
           java-version: 16
       - name: Maven Package
-        run: mvn -B clean compile package -DskipTests -f ./server/mustread
+        run: mvn -B clean compile package -DskipTests -f ./server/mustread/pom.xml
         
 #     Set global environment variables:
       - name: set global env
@@ -30,7 +30,7 @@ jobs:
 #     Build Docker image:
       - name: Build and tag image
         run: |
-          docker build -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_SHA::8}" ./server/mustread/pom.xml
+          docker build -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_SHA::8}" ./server/mustread
 
       - name: Docker login
         run: docker login docker.pkg.github.com -u $GITHUB_ACTOR -p ${{secrets.GITHUB_TOKEN}}
