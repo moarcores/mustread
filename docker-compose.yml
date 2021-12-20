@@ -12,12 +12,12 @@ services:
       POSTGRES_PASSWORD: kek
       POSTGRES_DB: kek
   app:
-    image: 'mustread-app:latest'
-    build:
-      context: ./server/mustread
+    image: 'ghcr.io/moarcores/mustread/mustread:latest'
     container_name: app
     depends_on:
       - postgres
+    ports:
+      - "8080:8080"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/kek
       - SPRING_DATASOURCE_USERNAME=kek
