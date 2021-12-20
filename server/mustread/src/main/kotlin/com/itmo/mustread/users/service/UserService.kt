@@ -54,5 +54,9 @@ class UserService(
         return AuthenticationResult(accessToken, refreshToken)
     }
 
+    fun getAllUsers(): List<UserModel> {
+        return userRepository.findAll().stream().map { user: User -> user.toModel() }.toList()
+    }
+
     private fun UserModel.toEntity() = User(this.username, this.password, this.status)
 }

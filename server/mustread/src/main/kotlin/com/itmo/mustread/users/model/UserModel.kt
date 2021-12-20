@@ -4,6 +4,7 @@ import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 
 data class UserModel(
+    val id: Int?,
     val username: String,
     val password: String,
     val status: Status,

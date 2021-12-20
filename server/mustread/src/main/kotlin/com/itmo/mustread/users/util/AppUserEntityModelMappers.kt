@@ -7,6 +7,7 @@ import kotlin.streams.toList
 
 fun User.toModel() = kotlin.runCatching {
     UserModel(
+        id = this.id?: 0,
         username = this.username ?: "",
         password = this.password ?: "",
         status = this.status ?: Status.OFFLINE,
