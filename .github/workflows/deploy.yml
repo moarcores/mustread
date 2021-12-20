@@ -18,7 +18,7 @@ jobs:
         with:
           java-version: 16
       - name: Maven Package
-        run: mvn -B clean compile package -DskipTests
+        run: mvn -B clean compile package -DskipTests -f ./server/mustread/pom.xml
         
 #     Set global environment variables:
       - name: set global env
