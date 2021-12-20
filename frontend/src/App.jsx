@@ -10,6 +10,7 @@ import { Login } from './components/Login';
 import { Header } from './components/Header';
 import { HomePage } from './components/Home';
 import { Read } from './components/Read';
+import { Users } from './components/Users/users';
 
 import './App.scss';
 
@@ -28,6 +29,7 @@ function App() {
           TODO change to login
           <Route exact path="/" element={authToken === null ? <Navigate to="/login"/> : <HomePage />} />
           <Route path="/read" element={<Read />}/>
+          <Route path="/users" element={<Users />}/>
         </Routes>
       </div>
     </Container>

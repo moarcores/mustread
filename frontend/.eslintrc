@@ -12,6 +12,7 @@
   },
   "rules": {
     "quotes": [2, "single", { "avoidEscape": true }],
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "react/no-unused-vars": 0
   }
 }
