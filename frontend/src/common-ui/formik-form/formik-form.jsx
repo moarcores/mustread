@@ -29,7 +29,7 @@ const Copyright = (props) => {
 
 const theme = createTheme();
 
-export const FormikForm = ({ formik, formName, isSubmitted }) => {
+export const FormikForm = ({ formik, formName, isSubmitted, children }) => {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -49,7 +49,7 @@ export const FormikForm = ({ formik, formName, isSubmitted }) => {
             {formName}
           </Typography>
           {isSubmitted
-            ? <div>Some message</div>
+            ? <div>{children}</div>
             : (<Box component="form" onSubmit={formik.handleSubmit} noValidate sx={{ mt: 1 }}>
               <TextField
                 margin="normal"

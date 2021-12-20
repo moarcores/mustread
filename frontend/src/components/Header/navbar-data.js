@@ -10,5 +10,9 @@ export const links = [
     {
         url: '/want',
         title: 'Want',
+    },
+    {
+        url: '/users',
+        title: 'Users'
     }
 ]
