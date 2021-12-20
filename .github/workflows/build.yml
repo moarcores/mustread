@@ -1,4 +1,4 @@
-name: BuildServer
+name: Build and Test Server
 
 on:
   pull_request:
@@ -17,5 +17,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 16
-      - name: Maven Package
+      - name: Build
         run: mvn -B clean package -DskipTests -f ./server/mustread/pom.xml
+      - name: Test
+        run: mvn -B clean verify -f ./server/mustread/pom.xml
