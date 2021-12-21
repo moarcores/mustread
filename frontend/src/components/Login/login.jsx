@@ -12,7 +12,7 @@ import { API_URL } from '../../api/api';
 
 const Message = () => (
   <div>
-    <p>Success login! Check <a href="/">feed</a>! </p>
+    <p>Success login! Check feed! </p>
   </div>
 );
 

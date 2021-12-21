@@ -2,7 +2,7 @@ import React from 'react';
 /*import PropTypes, {shape} from 'prop-types';*/
 import { Link } from 'react-router-dom';
 
-import './Navbar.scss';
+import './Navbar.css';
 
 export const Navbar = ({ links }) => {
     return (

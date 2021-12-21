@@ -8,7 +8,7 @@ import { Navbar } from '../Navbar';
 import Logo from '../../assets/img/book.png';
 import { links } from './navbar-data';
 
-import './Header.scss';
+import './Header.css';
 
 export const Header = () => {
   return (

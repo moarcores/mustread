@@ -9,10 +9,12 @@ import { Registration } from './components/Registration';
 import { Login } from './components/Login';
 import { Header } from './components/Header';
 import { HomePage } from './components/Home';
+import { Books } from './components/Books';
 import { Read } from './components/Read';
+import { Want } from './components/Want';
 import { Users } from './components/Users/users';
 
-import './App.scss';
+import './App.css';
 
 function App() {
   const theme = createTheme();
@@ -29,6 +31,8 @@ function App() {
           TODO change to login
           <Route exact path="/" element={authToken === null ? <Navigate to="/login"/> : <HomePage />} />
           <Route path="/read" element={<Read />}/>
+          <Route path="/want" element={<Want />}/>
+          <Route path="/books" element={<Books />}/>
           <Route path="/users" element={<Users />}/>
         </Routes>
       </div>

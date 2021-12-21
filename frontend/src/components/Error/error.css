@@ -1,0 +1,11 @@
+.error_block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.error_image {
+  width: 250px;
+}

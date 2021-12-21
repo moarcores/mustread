@@ -1,0 +1,17 @@
+.main__container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.main__container__book-image {
+  max-width: 300px;
+  max-height: 200px;
+}
+
+.main__container__book-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
