@@ -58,5 +58,11 @@ class UserService(
         return userRepository.findAll().stream().map { user: User -> user.toModel() }.toList()
     }
 
+    fun searchUsers(str: String): List<UserResponseDto> {
+        val users = userRepository.findUsersByUsernameContains(str)
+
+        return users.map { u -> UserResponseDto(u.id!!, u.username!!) }
+    }
+
     private fun UserModel.toEntity() = User(this.username, this.password, this.status)
 }
