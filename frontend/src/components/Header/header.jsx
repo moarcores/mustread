@@ -21,14 +21,14 @@ export const Header = () => {
           >
               <Link to="/" className="header__home_link">
                   <img src={Logo}  width="40" />
-                  <span>Must Read</span>
+                  <span>MustRead</span>
               </Link>
           </Grid>
-          <Grid item lg={8} md={5} xs={12} className="header__login">
+          <Grid item lg={9} md={5} xs={12} className="header__login">
                 <Navbar links={links} />
           </Grid>
           {/*TODO Nalabat login s pacanami*/}
-          <Grid item lg={2} md={3} xs={6} className="header__login">
+          <Grid item lg={1} md={3} xs={6} className="header__login">
             <IconButton href="/login">
               <AccountCircleIcon
                 color="secondary"
