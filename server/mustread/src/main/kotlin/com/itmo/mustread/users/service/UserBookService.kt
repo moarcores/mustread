@@ -30,11 +30,6 @@ class UserBookService(
         //check if already in want list
 
         user.wantBook.forEach { if (it.book?.id == bookId) return }
-//        for (b in user.wantBook) {
-//            if (b.book?.id == bookId) {
-//                return
-//            }
-//        }
 
         user.wantBook.add(WantBook(bookId))
         userRepository.save(user)
@@ -45,6 +40,17 @@ class UserBookService(
 
         return BookWantListDto(
             user.wantBook.map { wantBook -> wantBook.book!!.toModel() }
+        )
+    }
+
+    fun getWantListById(id: Int): BookWantListDto {
+        val user = userRepository.findById(id)
+        if (user.isEmpty) {
+            return BookWantListDto(emptyList())
+        }
+
+        return BookWantListDto(
+            user.get().wantBook.map { wantBook -> wantBook.book!!.toModel() }
         )
     }
 
@@ -90,19 +96,30 @@ class UserBookService(
 
     }
 
+    fun getReadBooksById(id: Int): List<ReadBookDto> {
+        val user = userRepository.findById(id)
+        if (user.isEmpty) {
+            return emptyList()
+        }
+
+        return user.get().readBooks.map { b -> ReadBookDto(b.book!!.toModel(), b.rating) }
+    }
+
     fun makeFeed(userName: String): List<FeedDto> {
         val res: MutableList<Pair<ReadBook, String>> = mutableListOf()
 
         val user = userRepository.findUserByUsername(userName)
         for (friend in user.subscriptions) {
-            res.addAll( friend.readBooks.map{ b -> Pair(b, friend.username!!)})
+            res.addAll(friend.readBooks.map { b -> Pair(b, friend.username!!) })
         }
 
         res.sortByDescending { it.first.modifyDate }
 
-        return res.map{e -> FeedDto(
-            ReadBookDto(e.first.book!!.toModel(), e.first.rating),
-            e.second
-        ) }
+        return res.map { e ->
+            FeedDto(
+                ReadBookDto(e.first.book!!.toModel(), e.first.rating),
+                e.second
+            )
+        }
     }
 }

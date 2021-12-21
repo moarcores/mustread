@@ -27,12 +27,21 @@ class UserController(private val userService: UserService) {
         security = [SecurityRequirement(name = "bearerAuth")]
     )
     fun getUserById(@PathVariable(value = "id") id: Int) = userService.getUserById(id)
-            ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "user not found")
+        ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "user not found")
 
     @PostMapping("/auth")
     @Operation(summary = "Authenticate")
     fun authUser(@RequestBody request: AuthenticationRequest): AuthenticationResult {
-       return userService.authUser(request)
+        return userService.authUser(request)
+    }
+
+    @GetMapping("/search/{str}")
+    @Operation(
+        summary = "Search users",
+        security = [SecurityRequirement(name = "bearerAuth")]
+    )
+    fun searchUser(@PathVariable str: String): List<UserResponseDto> {
+        return userService.searchUsers(str)
     }
 
     @PostMapping("/refresh")

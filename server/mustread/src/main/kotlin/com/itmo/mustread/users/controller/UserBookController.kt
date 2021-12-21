@@ -15,15 +15,6 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/userbook")
 class UserBookController(val userBookService: UserBookService) {
 
-//    @PostMapping("/rate")
-//    @Operation(
-//        summary = "Rate book",
-//        //security = [SecurityRequirement(name = "bearerAuth")]
-//    )
-//    fun rateBook(@RequestBody request: BookRequestDto): BookResponseDto {
-//        return bookService.addBook(request)
-//    }
-
     @PostMapping("/add/{id}")
     @Operation(
         summary = "Add book to want list",
@@ -51,6 +42,15 @@ class UserBookController(val userBookService: UserBookService) {
         return userBookService.getWantList(user.username)
     }
 
+    @GetMapping("/wantlist/{id}")
+    @Operation(
+        summary = "Get want list for other user",
+        security = [SecurityRequirement(name = "bearerAuth")]
+    )
+    fun getWantList(@PathVariable id: Int): BookWantListDto {
+        return userBookService.getWantListById(id)
+    }
+
     @PostMapping("/readBook")
     @Operation(
         summary = "Rate book or add to read list",
@@ -65,8 +65,18 @@ class UserBookController(val userBookService: UserBookService) {
         summary = "Get read books",
         security = [SecurityRequirement(name = "bearerAuth")]
     )
-    fun getReadBooks( @AuthenticationPrincipal user: User): List<ReadBookDto> {
+    fun getReadBooks(@AuthenticationPrincipal user: User): List<ReadBookDto> {
         return userBookService.getReadBooks(user.username)
+    }
+
+
+    @GetMapping("/getReadBooks/{id}")
+    @Operation(
+        summary = "Get read books",
+        security = [SecurityRequirement(name = "bearerAuth")]
+    )
+    fun getReadBooks(@PathVariable id: Int): List<ReadBookDto> {
+        return userBookService.getReadBooksById(id)
     }
 
     @GetMapping("/feed")
