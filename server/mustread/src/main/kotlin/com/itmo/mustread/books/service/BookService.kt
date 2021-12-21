@@ -22,7 +22,6 @@ class BookService(
             author = Author(req.author)
         }
         val book = bookRepository.base.save(Book(req.title, author, req.year, req.pictureLink))
-        println(book.author!!.id)
         return BookResponseDto(book.id ?: 0)
     }
 
