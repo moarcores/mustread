@@ -12,7 +12,7 @@ import { API_URL } from '../../api/api';
 
 const Message = () => (
   <div>
-    <p>Success login! Check <a href="/">feed</a>! </p>
+    <p>Success login! Check feed! </p>
   </div>
 );
 
@@ -32,7 +32,8 @@ export const Login = () => {
       axios.post(API_URL + '/users/auth', values)
         .then(res => {
           console.log(res.data.accessToken);
-          dispatch(setToken(res.data.accessToken))
+          dispatch(setToken(res.data.accessToken));
+          localStorage.setItem('token', res.data.accessToken);
           setIsSubmitted(true);
         })
         .catch((res)=> {

@@ -2,7 +2,7 @@ import React from 'react';
 
 import errorImage from '../../assets/img/error.png';
 
-import './error.scss';
+import './error.css';
 
 export const ErrorMessage = () => (
   <div className="error_block">
