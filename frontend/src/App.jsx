@@ -20,6 +20,7 @@ function App() {
   const theme = createTheme();
 
   const authToken = useSelector(state => state.login.token);
+  const token = authToken || localStorage.getItem('token');
   console.log(authToken)
   return (
     <Container maxWidth="lg">
@@ -29,7 +30,7 @@ function App() {
           <Route path="/registration" element={<Registration />} />
           <Route path="/login" element={<Login />} />
           TODO change to login
-          <Route exact path="/" element={authToken === null ? <Navigate to="/login"/> : <HomePage />} />
+          <Route exact path="/" element={token === null ? <Navigate to="/login"/> : <HomePage />} />
           <Route path="/read" element={<Read />}/>
           <Route path="/want" element={<Want />}/>
           <Route path="/books" element={<Books />}/>

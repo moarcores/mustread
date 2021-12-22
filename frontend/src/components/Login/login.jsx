@@ -32,7 +32,8 @@ export const Login = () => {
       axios.post(API_URL + '/users/auth', values)
         .then(res => {
           console.log(res.data.accessToken);
-          dispatch(setToken(res.data.accessToken))
+          dispatch(setToken(res.data.accessToken));
+          localStorage.setItem('token', res.data.accessToken);
           setIsSubmitted(true);
         })
         .catch((res)=> {
