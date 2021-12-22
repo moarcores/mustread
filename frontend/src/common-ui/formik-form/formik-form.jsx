@@ -99,7 +99,7 @@ export const FormikForm = ({ formik, formName, isSubmitted, children }) => {
                   </Link>
                 </Grid>
                 {formName === 'Sign in' && (<Grid item>
-                  <Link href='/registration' variant='body2'>
+                  <Link to='/registration' variant='body2'>
                     {'Don\'t have an account? Sign Up'}
                   </Link>
                 </Grid>)}

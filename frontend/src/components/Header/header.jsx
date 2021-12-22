@@ -29,12 +29,14 @@ export const Header = () => {
           </Grid>
           {/*TODO Nalabat login s pacanami*/}
           <Grid item lg={1} md={3} xs={6} className="header__login">
-            <IconButton href="/login" onClick={() => {localStorage.clear()}}>
-              <AccountCircleIcon
-                color="secondary"
-                fontSize="large"
-              />
-            </IconButton>
+            <Link to="/login">
+              <IconButton href="/login" onClick={() => {localStorage.clear()}}>
+                <AccountCircleIcon
+                  color="secondary"
+                  fontSize="large"
+                />
+              </IconButton>
+            </Link>
           </Grid>
       </Grid>
   </header>
