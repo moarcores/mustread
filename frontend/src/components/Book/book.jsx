@@ -46,7 +46,7 @@ const WantBook = (id, authToken) => {
 }
 export const Book = ({ id, img, name, authorName, description, rating }) => {
   const authToken = useSelector(state => state.login.token);
-
+  console.log('desc', description)
   const [modalOpen, setModalOpen] = useState(false);
   return (
     <>
@@ -67,8 +67,8 @@ export const Book = ({ id, img, name, authorName, description, rating }) => {
               <Typography gutterBottom variant="subtitle2" component="div">
                 {authorName}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {description}
+              <Typography style={{ marginTop: '2rem'}} variant="body2" color="text.secondary">
+                {description && 'Read by ' + description}
               </Typography>
               <Rating name="read-only" value={rating} readOnly />
             </CardContent>

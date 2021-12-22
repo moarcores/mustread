@@ -79,8 +79,8 @@ export const HomePage = () => {
     //TODO change to feed
     axios.get(API_URL + '/userbook/feed', config)
       .then((res) => {
-        console.log(res.data);
-        setBooks(res.data.books)
+        console.log('kek', res.data);
+        setBooks(res.data)
       })
       .catch(res => {
         console.log(res)
@@ -140,11 +140,12 @@ export const HomePage = () => {
         {books && books.map((book) =>
           (
             <Book
-              key={book.id}
-              id={book.id}
-              name={book.title}
-              authorName={book.author}
-              img={book.pictureLink}
+              key={book.readBook.bookModel.id}
+              id={book.readBook.bookModel.id}
+              name={book.readBook.bookModel.title}
+              authorName={book.readBook.bookModel.author}
+              img={book.readBook.bookModel.pictureLink}
+              description={book.userName}
             />
           ))}
       </div>
